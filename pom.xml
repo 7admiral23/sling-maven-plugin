@@ -17,7 +17,9 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -52,10 +54,18 @@
         <maven.site.path>${project.artifactId}-archives/${project.artifactId}-LATEST</maven.site.path>
         <github.project.id>apache/sling-maven-plugin</github.project.id>
         <sling.java.version>8</sling.java.version>
-        <mavenVersion>3.3.1</mavenVersion><!-- minimum target Maven version this plugin is compatible with -->
-        <maven.compiler.target>${sling.java.version}</maven.compiler.target><!-- also set target next to release due to https://issues.apache.org/jira/browse/MPLUGIN-404 -->
-        <starter-its.startTimeoutSeconds>120</starter-its.startTimeoutSeconds><!-- the time in seconds to wait for Sling Starter Feature to be started for the ITs -->
+        <mavenVersion>3.3.1</mavenVersion><!-- minimum target Maven version this plugin is
+        compatible with -->
+        <maven.compiler.target>${sling.java.version}</maven.compiler.target><!-- also set target
+        next to release due to https://issues.apache.org/jira/browse/MPLUGIN-404 -->
+        <starter-its.startTimeoutSeconds>120</starter-its.startTimeoutSeconds><!-- the time in
+        seconds to wait for Sling Starter Feature to be started for the ITs -->
         <project.build.outputTimestamp>1660726230</project.build.outputTimestamp>
+
+        <!-- Sonarcloud v1-->
+        <sonar.organization>7admiral23</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+
     </properties>
 
     <build>
@@ -118,12 +128,14 @@
                 <artifactId>feature-launcher-maven-plugin</artifactId>
                 <version>0.1.2</version>
                 <configuration>
-                    <!-- newer versions don't work due to https://issues.apache.org/jira/browse/SLING-11158 -->
+                    <!-- newer versions don't work due to
+                    https://issues.apache.org/jira/browse/SLING-11158 -->
                     <featureLauncherVersion>1.1.26</featureLauncherVersion>
                     <launches>
                         <launch>
                             <id>sling-starter-oak-tar</id>
-                            <!-- launch the regular Starter distribution (based on Oak with Segment Node Store) -->
+                            <!-- launch the regular Starter distribution (based on Oak with Segment
+                            Node Store) -->
                             <feature>
                                 <groupId>org.apache.sling</groupId>
                                 <artifactId>org.apache.sling.starter</artifactId>
@@ -158,7 +170,8 @@
                         <pomInclude>**/pom.xml</pomInclude>
                     </pomIncludes>
                     <postBuildHookScript>verify</postBuildHookScript>
-                    <!-- <localRepositoryPath>${project.build.directory}/it-repo</localRepositoryPath>  -->
+                    <!--
+                    <localRepositoryPath>${project.build.directory}/it-repo</localRepositoryPath>  -->
                     <properties>
                         <sling.url>http://localhost:${starter-its.http.port}</sling.url>
                     </properties>
@@ -317,7 +330,8 @@
 
     <profiles>
         <profile>
-            <!-- extend jacoco profile as long as https://issues.apache.org/jira/browse/SLING-11529 is not fixed -->
+            <!-- extend jacoco profile as long as https://issues.apache.org/jira/browse/SLING-11529
+            is not fixed -->
             <id>jacoco-report</id>
             <build>
                 <pluginManagement>
@@ -333,7 +347,8 @@
                 </pluginManagement>
             </build>
         </profile>
-        <!-- This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
+        <!-- This plugin's configuration is used to store Eclipse m2e settings only. It has no
+        influence on the Maven build itself. -->
         <profile>
             <id>only-eclipse</id>
             <activation>
